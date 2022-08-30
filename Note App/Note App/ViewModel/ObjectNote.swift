@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class ObjectNote: ObservableObject, Equatable {
+class ObjectNote: ObservableObject, Equatable,Identifiable {
     
     static func == (lhs: ObjectNote, rhs: ObjectNote) -> Bool {
         return lhs.id == rhs.id
