@@ -8,6 +8,7 @@
 import Foundation
 
 class ObjectNoteModel: ObservableObject,Identifiable{
+    @Published var searchText = ""
     @Published var data: [ObjectNote] = [
         .init(title: "Hello", note: "I am UX UI Designer", date_created: Date(), last_edition: Date()),
         .init(title: "Spend", note: "I spend so much time", date_created: Date(), last_edition: Date()),
@@ -36,5 +37,15 @@ class ObjectNoteModel: ObservableObject,Identifiable{
         objectNote.title = title
         objectNote.note = note
         objectNote.last_edition = last_edition
+    }
+    func searchNote() -> [ObjectNote] {
+        if searchText.isEmpty{
+            return data
+        }
+        else {
+            return data.filter({
+                $0.title.contains(searchText) || $0.note.contains(searchText)
+            })
+        }
     }
 }

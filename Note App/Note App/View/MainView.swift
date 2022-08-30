@@ -48,8 +48,8 @@ extension MainView{
                         .font(.largeTitle)
                         .foregroundColor(.white)
                     Spacer()
-                    Button {
-                        //
+                    NavigationLink {
+                        SearchView()
                     } label: {
                         Image(systemName: "magnifyingglass")
                             .font(.title2)
