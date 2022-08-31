@@ -1,21 +1,20 @@
 //
-//  MainView.swift
+//  ImportantNoteView.swift
 //  Note App
 //
-//  Created by Lê Văn Huy on 29/08/2022.
+//  Created by Lê Văn Huy on 30/08/2022.
 //
 
 import SwiftUI
 
-struct MainView: View {
-    @EnvironmentObject var viewModel : ObjectNoteModel
-    
+struct ImportantNoteView: View {
+    @EnvironmentObject var viewModel: ObjectNoteModel
     var body: some View {
         VStack{
-            HeaderView(text: "Notes")
+            HeaderView(text: "Important Notes")
             ScrollView{
                 LazyVStack{
-                    ForEach(viewModel.data,id:\.id){ object in
+                    ForEach(viewModel.importantNode,id:\.id){ object in
                         NavigationLink {
                             AddView(objectNote: object,id: object.id)
                         } label: {
@@ -23,23 +22,18 @@ struct MainView: View {
                         }
                         
                     }
-                    
                 }
             }
             Spacer()
         }
-        .navigationBarHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
+        
     }
-    
-    
-    
 }
 
-
-struct MainView_Previews: PreviewProvider {
+struct ImportantNoteView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        ImportantNoteView()
             .environmentObject(ObjectNoteModel())
     }
 }
-

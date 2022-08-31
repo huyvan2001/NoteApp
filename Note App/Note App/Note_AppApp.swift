@@ -11,12 +11,10 @@ import SwiftUI
 struct Note_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationView{
-                MainView()
+            NavigationView {
+               MainTabView()
             }
             .environmentObject(ObjectNoteModel())
-            .navigationBarHidden(true)
-
         }
     }
 }
