@@ -17,11 +17,13 @@ class ObjectNote: ObservableObject, Equatable,Identifiable {
     @Published var id: UUID = UUID()
     @Published var title: String
     @Published var note: String
+    @Published var importantNote: Bool
     @Published var date_created: Date
     @Published var last_edition: Date
-    init(title:String = "title",note: String = "note", date_created: Date = Date(), last_edition: Date = Date()){
+    init(title:String = "title",note: String = "note",importantNote:Bool = false, date_created: Date = Date(), last_edition: Date = Date()){
         self.title = title
         self.note = note
+        self.importantNote = importantNote
         self.date_created = date_created
         self.last_edition = last_edition
     }

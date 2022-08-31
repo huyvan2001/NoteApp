@@ -9,14 +9,31 @@ import SwiftUI
 
 struct NoteRow: View {
     @EnvironmentObject var viewModel: ObjectNoteModel
-    @ObservedObject var objectNote: ObjectNote
+    @StateObject var objectNote: ObjectNote
+    
     var body: some View {
         VStack(alignment: .leading){
             VStack(alignment: .leading){
                 VStack(alignment: .leading){
-                    Text(objectNote.title)
-                        .font(.title)
-                        .padding(.bottom,5)
+
+                    HStack{
+                        Text(objectNote.title)
+                            .font(.title)
+                            .padding(.bottom,5)
+                        Spacer()
+                        
+                        Button {
+                            objectNote.importantNote.toggle()
+                            viewModel.noteImportant()
+                        } label: {
+                            Image(systemName: objectNote.importantNote ? "star.fill" : "star")
+                                .font(.largeTitle)
+                                .foregroundColor(.yellow)
+                        }
+
+                    }
+                    
+                    
                     Text(objectNote.note)
                         .font(.body)
                 }
@@ -29,7 +46,14 @@ struct NoteRow: View {
                     .foregroundColor(Color(.systemGray))
                 Spacer()
                 Button {
-                    viewModel.deleteObjectNote(objectNote)
+                    if objectNote.importantNote == true {
+                        viewModel.deleteObjectNote(objectNote)
+                        viewModel.deleteNoteImportant(objectNote)
+                    }
+                    else
+                    {
+                        viewModel.deleteObjectNote(objectNote)
+                    }
                 } label: {
                     Image(systemName: "trash")
                         .frame(width: 40, height: 40)
